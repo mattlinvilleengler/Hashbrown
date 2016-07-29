@@ -1,0 +1,25 @@
+<div class="mdl-card mdl-shadow--2dp" style="float:left; margin:25px; width:230px;" *ngFor="let d of data">
+    <div class="mdl-card__title" style="padding-bottom:0px">
+        <h2 class="mdl-card__title-text">{{d.time}}</h2>
+    </div>
+    <div class="mdl-card__supporting-text" style="padding:10px 16px">
+        <div class="demo-list-action mdl-list">
+            <div class="mdl-list__item  meas" *ngFor="let metric of d.measurements">
+                <span class="mdl-list__item-primary-content">
+<span class="smFont">{{metric.name}}</span>
+                </span>
+                <a class="mdl-list__item-secondary-action">{{metric.value}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+Edit Data
+</a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">multiline_chart</i>
+                    </button>
+    </div>
+</div>

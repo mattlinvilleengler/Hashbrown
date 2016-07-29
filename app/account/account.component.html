@@ -1,0 +1,92 @@
+<div class="circleCard"><div class="mdl-card mdl-shadow--2dp ma" style="float:left; max-width: 90%; width:650px; margin:5%;">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Account</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <form action="#">
+            <div class="accountCard" style="float:left; width:49%;">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="fullName">
+                    <label class="mdl-textfield__label" for="sample3">Full Name...</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="address1">
+                    <label class="mdl-textfield__label" for="sample3">Address Line 1</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="address2">
+                    <label class="mdl-textfield__label" for="sample3">Address Line 2</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="city">
+                    <label class="mdl-textfield__label" for="sample3">City</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="state">
+                    <label class="mdl-textfield__label" for="sample3">State</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="country">
+                    <label class="mdl-textfield__label" for="sample3">Country</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" id="sample3" [(ngModel)]="postalCode">
+                    <label class="mdl-textfield__label" for="sample3">Postal Code...</label>
+                </div>
+            </div>
+            <div  class="accountCard" style="float:right; width:40%; margin-left:45px;">
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1" style="margin: 10px 0;">
+                            <span class="mdl-switch__label">Share Data Privately</span>
+                            <input type="checkbox" id="switch-1" class="mdl-switch__input" [(ngModel)]="shareDataPriv">
+                            </label>
+                </div>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect " (click)='signInRe()' style="margin: 20px 0 10px 0;">
+                        Change Login Email
+                         </a>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect " (click)='signInRe()' style="margin: 10px 0;">
+                        Change Password
+                        </a>
+            </div>
+        </form>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="margin: 15px; float:right;"
+            (click)='saveAccount()'>Save Account Info
+</a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">account_box</i>
+                    </button>
+    </div>
+</div>
+
+</div>
+
+<dialog #newDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Account</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Welcome to the account page. This is where you can update basic information and account settings.
+            Now let's see where we can set up our data configuration.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="closeNewDialog()">Continue</button>
+    </div>
+</dialog>
+
+<dialog #successDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Success</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Account information has been saved succesfully. 
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="dashboardSuccess()" >Go To Dashboard</button>
+        <button type="button" class="mdl-button" (click)="closeSuccessDialog()" >Close</button>
+    </div>
+</dialog>

@@ -1,0 +1,151 @@
+
+<div class="dashBox" style="margin:45px 20px 0px 0; margin-left:0!important;">
+    <div class="">
+        <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp" 
+        [class.landingNavSelected]="one" [class.landingNav]="!one" style="background-color: rgba(0,0,0,.95)!important;
+        color: rgba(250,250,250, .5)!important;line-height:20px!important; text-align:left; margin:0 !important"
+        (click)="one = true; addCustomMetricOpen();">
+<i class="material-icons" style="margin-bottom:8px;">add</i>Add METRIC
+</button>
+ <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp buttonInline" 
+ [class.landingNavSelected]="two" [class.landingNav]="!two"  style="color: rgba(0,0,0, 1)!important; background-color: rgba(0,0,0,.55)!important;
+ line-height:20px!important; text-align:left; display:block; margin:0 !important"
+ (click)="two = true;saveSettings();">
+<i class="material-icons" style="margin-bottom:8px;"> save</i>SAVE SETTINGS
+</button>
+    </div></div>
+
+
+<div class="circleCard" style="margin:5%;" >
+
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp ma"
+ style="display:inline; vertical-align:top; margin:2%; margin-top:3%; max-width:90%; width: 275px; overflow:visible;">
+    <div class="mdl-card__title">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-shadow--6dp" 
+       style="margin-top:-40px; width:100%; height:55px; text-align:left; 
+       background-color: #333; color:rgba(250,250,250, .5)">
+            <h4 style="margin:0">Settings</h4>
+       </button>
+    </div>
+    <div class="mdl-card__supporting-text" style="margin-top:-40px; padding-left:25px;">
+        <div class="demo-list-action mdl-list" style="padding-right:20px;">
+            <h6>Select metrics to track by clicking on a selection. A metric is selected if the adjacent star is lit up.
+                To add a custom metric click the add metric button at the top left of this page. 
+                Save settings when finished by clicking the save settings button at the top left of this page.
+            </h6>
+        </div>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">settings</i>
+                    </button>
+    </div>
+</div>
+
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp ma" *ngFor="let settingCategory of settingsOrganized"
+ style="display:inline; vertical-align:top; margin:2%; margin-top:3%; max-width:90%; width: 275px; overflow:visible;">
+    <div class="mdl-card__title">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-shadow--6dp" 
+       style="margin-top:-40px; width:100%; height:55px; text-align:left; 
+       background-color: #333; color:rgba(250,250,250, .5)">
+            <h4 style="margin:0">{{settingCategory[0] ? settingCategory[0].category : "Custom Metrics"}}</h4>
+       </button>
+    </div>
+    <div class="mdl-card__supporting-text" style="margin-top:-20px;">
+        <div class="demo-list-action mdl-list">
+            <div *ngFor="let setting of settingCategory" style="float:left; margin : 0 10px; width:225px;">
+                <div (click)="setting.selected = !setting.selected" class="mdl-list__item measurementSelection" [class.measurementSelected]="setting.selected">
+                    <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-avatar">{{setting.icon}}</i>
+<span>{{setting.measurement}}</span>
+                    </span>
+                    <a class="mdl-list__item-secondary-action"><i class="material-icons">star</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">settings</i>
+                    </button>
+    </div>
+</div>
+</div>
+       <!-- <button (click)="addCustomMetricOpen()" id="addMetric" 
+        class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-button--mini-fab mdl-button--colored extend"
+         style=" position: fixed; right: 40px; top:175px; z-index:999;">
+  <i class="material-icons">add</i>
+</button>
+
+<div class="mdl-tooltip mdl-tooltip--left mdl-tooltip--large" for="addMetric" 
+style=" z-index:1000;">
+Add Custom Metric
+</div>
+
+<button id="saveSettings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent extend"
+ (click)="saveSettings()" style=" position: fixed; right: 100px; top:177px; z-index:999;">
+  Save Settings
+</button>-->
+
+<dialog #successDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Success</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Your settings have been successfully saved.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="dashboardSuccess()">Go To Dashboard</button>
+        <button type="button" class="mdl-button" (click)="closeSuccessDialog()">Close</button>
+    </div>
+</dialog>
+
+<dialog #newDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Settings</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Welcome to the settings page. This is where you can configure your data and select metrics to track. Now let's see how we
+            can add and track metrics
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="closeNewDialog()">Continue</button>
+    </div>
+</dialog>
+
+<dialog #addDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Add Metric</h4>
+    <div class="mdl-dialog__content">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="addMetricName">
+            <label class="mdl-textfield__label" for="sample3">Metric Name...</label>
+        </div>
+        <p> Select Type of Data Input </p>
+        <div class= "measurementSelection" style="padding:7px; margin: 5px 0;"
+        (click)="addInputNumber = true; addInputRange = false" [class.measurementSelectedBox]="addInputNumber">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label "
+        style="cursor:pointer; margin:-20px 20px -20px 0 ">
+            <input class="mdl-textfield__input" type="number" id="sample3" style="cursor:pointer;" >
+            <label class="mdl-textfield__label" for="sample3">Number..</label>
+        </div></div>
+<div class="measurementSelection" [class.measurementSelectedBox]="addInputRange" 
+(click)="addInputRange = true; addInputNumber = false;" style="padding:7px; margin: 5px 0;">
+        <span class="mdl-list__item-primary-content">
+<span>Slider</span>
+        </span>
+        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" tabindex="0">
+</div>
+<p [hidden]="!addInputNumber" style="margin:5px 0 0 0;" >What is the estimated max value for this metric?</p>
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" [hidden]="!addInputNumber">
+            <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="customMax">
+            <label class="mdl-textfield__label" for="sample3">Max Value...</label>
+        </div>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="addCustomMetricClose()">Close</button>
+        <button type="button" class="mdl-button" (click)="addCustomMetric()">Add</button>
+    </div>
+</dialog>
