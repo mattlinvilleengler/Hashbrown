@@ -329,12 +329,12 @@ transition-duration: .4s;
 .landingNavSelected{
     height: 110px!important;
     width:90px!important;
-    background-color:rgba(0,0,0,.75)!important;
+    background-color:rgb(244,67,54)!important;
     color:rgba(250,250,250,.75)!important;
     margin:20px 1px!important;
-    box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2)!important;
+    /box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2)!important;
     padding-top:25px!important;
-    line-height:40px!important;
+    line-height:15px!important;
     font-weight:600!important;
 }
 .landingNavSelected:hover{
@@ -342,6 +342,7 @@ transition-duration: .4s;
 }
 .landingNavSelected i{
     display:block;
+    font-size:30px;
 }
 .landingNav{
     height: 110px!important;
@@ -350,7 +351,7 @@ transition-duration: .4s;
     color:rgba(0,0,0,.65)!important;
     margin:20px 1px!important;
     padding-top:25px!important;
-    line-height:40px!important;
+    line-height:15px!important;
     font-weight:600!important;
     box-shadow: none!important;
     transition-duration: .3s!important;

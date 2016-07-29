@@ -1,194 +1,52 @@
-<div #bigBox [hidden]="loggedIn" (scroll)="flip();" >
+<div #bigBox [hidden]="loggedIn" >
     <center style="display: flex; align-items: center;justify-content: center;" >
-        <div style=" max-width: 90%; width:500px; margin-top:10%; ">
-            <div class="mdl-card__supporting-text" style=" Padding:0px;">
-                <div #mainFlip style="transition-duration:.7s;" 
-                [class.mainFlip]="scrolled" [style.position]="pos" [style.top.px]="top"
-                [style.left]="left" [style.width]="w">
-                    <center>
-                        <h1 class="landingHead">VSQUARE <i class="material-icons" style="font-size:40px; margin:10px">data_usage</i> </h1>
-                        <hr style="border-color: rgba(250,250,250,.35)">
+        <div style=" max-width: 100%; margin-top:7%; ">
+            <div class="mdl-card__supporting-text" style=" Padding:0px; width:auto;">
+           
+                    <h1 class="landingHead" style="color:rgb(244,67,54); font-weight:600; font-size:85px;">HASHBROWN</h1>
 
-                        <a class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp" (click)="openLogin()"
-                            style="margin:7px; color: rgba(250,250,250, .75); background-color: rgba(0,0,0, .65)">
-Login
-</a>
-                        <a class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-shadow--4dp" (click)="openRegister()"
-                            style="margin:7px; color: rgba(250,250,250, .75); background-color: rgba(0,0,0, .5)">
-Create Account
-</a>
-                        <hr style="border-color: rgba(250,250,250,.35)">
-
-                        <h1 class="rotate landingHead">VSQUARE<i class="material-icons" style="font-size:40px; margin:10px;">data_usage</i> </h1>
-                    </center>
-                    <i class="material-icons mdl-card__supporting-text" [style.opacity]="op" style="font-size:60px; margin-top:25px;">keyboard_arrow_down</i>
-                </div>
+               
+             
             </div>
             
         </div>
     </center>
 <div #contentBox style="transition-duration:.7s; width:100%;" [style.left.px]="contentLeft" 
 [style.top.px]="contentTop" [style.position]="contentPosition">
-<div class="circleCard" style="margin-top:55px;">
+<div class="circleCard" style="margin-top:15px;">
     <div class="circleCard">
         <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp" 
-        [class.landingNavSelected]="one" [class.landingNav]="!one"
-        (click)="one = true; two = false; three = false;">
-<i class="material-icons"> data_usage</i>VSQUARE
+        [class.landingNavSelected]="one" 
+        (click)=" openLogin();">
+<i class="fa fa-bolt" aria-hidden="true"></i><br>LOGIN
 </button>
  <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp " 
- [class.landingNavSelected]="two" [class.landingNav]="!two" 
- (click)="two = true;one = false; three = false;">
-<i class="material-icons"> note</i>NEWS
-</button>
- <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp " 
- [class.landingNavSelected]="three" [class.landingNav]="!three" 
- (click)="three = true;two = false; one = false;">
-<i class="material-icons"> live_tv</i>MEDIA
+ [class.landingNavSelected]="one"
+ (click)="openRegister()">
+<i class="fa fa-thumbs-up" aria-hidden="true"></i><br>CREATE ACCOUNT
 </button>
     </div></div>
-    <div class="circleCard" style="margin: 50px 0;">
-        <div>
-        <div class="circleCard" style="max-width:900px;" [hidden]="!one">
-
-              <div class=" mdl-card mdl-shadow--6dp c" style=" margin:3%; height:210px; width:430px;">
-                  <div class="mdl-card__actions mdl-card--border" style="border-bottom: 1px solid rgba(0,0,0,.1);">
-                    <i class="material-icons" style="float:right;"> data_usage</i>
-                    <span style="float:right; margin-top:4px; margin-right:5px;">VSQUARE</span>
-                </div>
-                <div class="mdl-card__supporting-text" style="font-size:15px; font-weight:600; line-height:22px; margin-top:-5px;">
-                VSQUARE is a personal aggregate data visualization application. 
-                Track metrics and see their averages over time. 
-                Calculate correlations between data. 
-                Predict future data that reflects life patterns.
-                By using VSQUARE you will gain insights into your life and how everyday decisions effect eachother. 
-                </div>
-            </div>
-
-              <div class=" mdl-card mdl-shadow--6dp c" style=" margin:3%; height:315px; width:220px;">
-                  <div class="mdl-card__actions mdl-card--border" style="border-bottom: 1px solid rgba(0,0,0,.1);">
-                      <i class="material-icons" style="float:right;"> star_border</i>
-               <span style="float:right; margin-top:4px; margin-right:5px;  ">Future Releases</span>
-                    </div>
-                <div class="mdl-card__supporting-text" style="font-size:15px; font-weight:600; line-height:22px; margin-top:-12px; margin-left:-20px;">
-                    <ul style="">
-                        <li>Easy to use time tracking</li>
-                        <li>Data for groups - from company personel to sport teams</li>
-                        <li>Iphone and Android Mobile Apps</li>
-                        <li>Integration with mobile sensors for 
-                steps, movement, and sleep tracking</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class=" mdl-card mdl-shadow--6dp c" style=" margin:3%; height:375px">
-                <div class="mdl-card__title mdl-card--expand card1">
-                    <h2 class="mdl-card__title-text picText">Aggregate Data</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    One place for all of your important metrics.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <i class="material-icons"> blur_linear</i>
-                </div>
-            </div>
-
-            <div class=" mdl-card mdl-shadow--6dp c" style="  margin:3%; height:375px">
-                <div class="mdl-card__title mdl-card--expand card2">
-                    <h2 class="mdl-card__title-text picText">Interpolation</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    Measure and track metrics to see how individual metrics impact aggregate data as a whole and as indivdual data points.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <i class="material-icons">timeline</i>
-                </div>
-            </div>
-
-            <div class=" mdl-card mdl-shadow--6dp c" style=" margin:3%; height:375px">
-                <div class="mdl-card__title mdl-card--expand card3">
-                    <h2 class="mdl-card__title-text picText">Data Visualization</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    Track trends in personal data using cutting edge data visualization technology.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <i class="material-icons"> multiline_chart</i>
-                </div>
-            </div>
-
-            <div class=" mdl-card mdl-shadow--6dp c" style="  margin:3%; height:375px">
-                <div class="mdl-card__title mdl-card--expand card4">
-                    <h2 class="mdl-card__title-text picText">Data Correlations</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    Utilize automatic calculations of trends, postive corelations, and negative correlations between data groups
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <i class="material-icons"> compare_arrows</i>
-                </div>
-            </div>
-
-            <div class=" mdl-card mdl-shadow--6dp c" style="  margin:3%; height:375px">
-                <div class="mdl-card__title mdl-card--expand card5">
-                    <h2 class="mdl-card__title-text picText">AI</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    VSQUARE utilizes cutting edge AI and Machine learning to calculate future data points as well as calculate how data groups
-                    will change if patterns in other data groups are altered.
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <i class="material-icons"> cached</i>
-                </div>
-            </div>
-            </div>
-
-              <div #vid [hidden]="!three" class=" mdl-card mdl-shadow--8dp" style="margin:3%; height:254px; width:640px; padding: 0;">
-                <div class="mdl-card__title mdl-card--expand" style="padding:0">
-              <iframe #innerVid src="https://player.vimeo.com/video/110267377?color=ea6a47&title=0&byline=0&portrait=0" 
-            width="640" height="254" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
     <dialog #loginDialog class="mdl-dialog">
         <h4 class="mdl-dialog__title">Login</h4>
         <div class="mdl-dialog__content">
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="sample3" [(ngModel)]="email">
-                <label class="mdl-textfield__label" for="sample3">Email...</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" id="sample3" [(ngModel)]="password">
-                <label class="mdl-textfield__label" for="sample3">Password...</label>
-            </div>
-
+            <center>
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" (click)="signInRe()" style="height:120px; width:120px;">
+  <i class="fa fa-google" aria-hidden="true" style="font-size:100px;"></i>
+</button>
+            </center>
         </div>
         <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
             <button type="button" class="mdl-button" (click)="closeLoginDialog()">Close</button>
-            <button type="button" class="mdl-button" (click)="signInFitSocial()">Login</button>
-            <button type="button" class="mdl-button" (click)="signInRe()">Login with Google</button>
         </div>
     </dialog>
 
     <dialog #registerDialog class="mdl-dialog">
         <h4 class="mdl-dialog__title">Create Account</h4>
         <div class="mdl-dialog__content">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="sample3" [(ngModel)]="emailRegister">
-                <label class="mdl-textfield__label" for="sample3">Email...</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" id="sample3" [(ngModel)]="passwordRegister">
-                <label class="mdl-textfield__label" for="sample3">Password...</label>
-            </div>
         </div>
         <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
             <button type="button" class="mdl-button" (click)="closeRegisterDialog()">Close</button>
-            <button type="button" class="mdl-button" (click)="register()">Create Account</button>
-            <button type="button" class="mdl-button" (click)="registerGoogle()">Create Account with Google</button>
+            <button type="button" class="mdl-button" (click)="registerGoogle()"><i class="fa fa-google" aria-hidden="true"></i></button>
         </div>
     </dialog>
