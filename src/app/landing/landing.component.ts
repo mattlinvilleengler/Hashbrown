@@ -33,10 +33,6 @@ export class LandingComponent implements AfterViewInit{
 
   @ViewChild('loginDialog') loginDialog: any;
   @ViewChild('registerDialog') registerDialog: any;
-  @ViewChild('mainBox') mainBox: any;
-  @ViewChild('mainFlip') mainFlip: any;
-  @ViewChild('contentBox') contentBox: any;
-  @ViewChild('bigBox') bigBox: any;
   
 flip(){
   if(window.innerWidth > 990){
@@ -45,9 +41,7 @@ flip(){
  this.pos ="absolute";
  this.left = (window.innerWidth - 355) + "px";
  this.top = -10;
- this.contentTop = 75;
- this.contentPosition = "absolute"
- this.op = 0;
+
   }else {
      this.scrolled = false;
      this.pos ="absolute";
@@ -61,16 +55,6 @@ flip(){
   }
 }
 setTheStuff(){
- this.top = this.mainFlip.nativeElement.offsetTop;
- this.left = this.mainFlip.nativeElement.offsetLeft + "px";
- this.w = this.mainFlip.nativeElement.clientWidth + "px";
- this.contentTop = this.contentBox.nativeElement.offsetTop;
- this.contentLeft = this.contentBox.nativeElement.offsetLeft; 
- this.cTop = this.contentTop;
- this.cLeft = this.contentLeft;
- this.logTop = this.top;
- this.logLeft = this.left;
-
 }
 signInRe(){
   var me = this;

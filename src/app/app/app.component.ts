@@ -54,15 +54,28 @@ export class AppComponent implements AfterViewInit {
   feedbackName: string = "";
   feedbackEmail: string = "";
   feedbackMessage: string = "";
-  
 
+
+     category: string = "Select Category";
+     task: string = "";
+     description: string = "";
+     name: string= "";
+     taskOn: boolean = false;
+
+     categoryShow: string = "Select Category";
+     taskShow: string = "";
+     descriptionShow: string = "";
+     nameShow: string= "";
+     dateShow: any;
+     timeSince: any;
+     status:number = 0;
+     groupStat: any[] = [];
+     
+
+  @ViewChild('addDialog') addDialog: any;
   @ViewChild('refresh') refresh: any;
-  @ViewChild('successDialog') successDialog: any;
-  @ViewChild('account') account: any;
-  @ViewChild('dashboard') dashboard: any;
-  @ViewChild('hiddenLink') hiddenLink: any;
-  @ViewChild('submitErrorDialog') submitErrorDialog: any;
- 
+  @ViewChild('welcomeDialog') welcomeDialog: any;
+  @ViewChild('statusDialog') statusDialog: any;
 
   successMessage: string = " ";
 
@@ -70,21 +83,22 @@ export class AppComponent implements AfterViewInit {
     var me = this;
     this.url = window.location.href;
     componentHandler.upgradeDom();
+        dialogPolyfill.registerDialog(this.addDialog.nativeElement);
+        dialogPolyfill.registerDialog(this.welcomeDialog.nativeElement);
+        dialogPolyfill.registerDialog(this.statusDialog.nativeElement);
+        
     this.errorsOpen = window.localStorage.getItem('errorsOpen') == "true" ? true : false;
-    dialogPolyfill.registerDialog(this.successDialog.nativeElement);  
-    dialogPolyfill.registerDialog(this.submitErrorDialog.nativeElement);  
     firebase.auth().onAuthStateChanged(function (user: any) {
       if (user) {
         me.loginMethod = window.localStorage.getItem('loginMethod');
         me.loggingIn = window.localStorage.getItem('loggingIn') == "true" ? true : false;
         me.newUser = me.loginMethod == "new" ? true : false;
-        me.successMessage = me.loginMethod == "new" ? "Account Successfully Created. " :
-          "Successfully signed in as " + user.displayName;
-        me.successMessage += me.loginMethod == "new" ? "Now let's get started." : "";
-        me.loggingIn ? me.successDialog.nativeElement.showModal() : me.loggedIn = true;
+        me.loginMethod == "new" ? me.welcomeDialog.nativeElement.showModal()  : false;
         me.userID = user.uid;
-        me.displayName = user.displayName;
-        me.getAccount();
+        me.name = user.displayName ? user.displayName : "";
+        me.loggedIn = true;
+        me.getGroup();
+        me.getName();
       } else {
         me.loggedIn = false;
       }
@@ -93,7 +107,6 @@ export class AppComponent implements AfterViewInit {
       setInterval(function () { me.refreshPage() }, 200)
   }
   signOut() {
-    this.hiddenLink.nativeElement.click();
     firebase.auth().signOut().then(function () {
       // Sign-out successful.
       //alert("successfuly signed out");
@@ -102,16 +115,58 @@ export class AppComponent implements AfterViewInit {
     });
 
   }
-  getAccount() {
+    getName() {
     var me = this;
-    database.ref('account/' + this.userID).on('value', function (snapshot: any) {
-      me.updateAccount(snapshot.val());
+    database.ref("names/" + this.userID + "/").on('value', function (snapshot: any) {
+      me.updateName(snapshot.val());
+    });
+      database.ref("currentTask/" + this.userID + "/status").on('value', function (snapshot: any) {
+      me.updateStatus(snapshot.val());
     });
   }
-  updateAccount(account: any) {
-    if (account) {
-      this.displayName = account.fullName ? account.fullName : "";
+   updateStatus(status: any) {
+    if (status) {
+      this.status = status.status;
     }
+  }
+    updateName(name: any) {
+    if (name) {
+      this.name = name.name;
+    }
+  }
+  getGroup() {
+    var me = this;
+    database.ref('currentTask/').on('value', function (snapshot: any) {
+      me.updateGroup(snapshot.val());
+    });
+  }
+  updateGroup(groups: any) {
+    if (groups) {
+      this.groupStat =[];
+      for (var group in groups){
+        var g: any = {};
+      g.taskOn = groups[group].taskOn == "true" ? true : false;
+      g.categoryShow = groups[group].category;
+      g.taskShow = groups[group].task;
+      g.descriptionShow = groups[group].description;
+      g.dateShow = new Date(groups[group].date).toLocaleDateString() + " " + new Date(groups[group].date).toLocaleTimeString() ;
+      g.timeSince = this.getTimeSince(groups[group].date); 
+      g.nameShow = groups[group].name;
+      g.status = groups[group].status.status;
+      this.groupStat.push(g);
+    }
+       
+    } else {
+      this.taskOn = false;
+    }
+  }
+  getTimeSince(d){
+     var time: number =  ((( new Date().getTime()) - d ) /  3600000);
+     var t = time.toString().split(".");
+     var hrs = +t[0] > 0 ? t[0] + "hrs" : "";
+     var afterD = +t[1] > 0 ? t[1].split("") : 0;
+     var min = ((+(afterD[0] + afterD[1]) / 100) * 60) + "min";
+     return hrs + " " + min;
   }
   refreshPage() {
     this.refresh.nativeElement.onmouseover();
@@ -119,36 +174,62 @@ export class AppComponent implements AfterViewInit {
   closeSuccess() {
     window.localStorage.setItem('loginMethod', "current");
     window.localStorage.setItem('loggingIn', "false");
-    this.successDialog.nativeElement.close();
+    this.welcomeDialog.nativeElement.close();
     this.loggedIn = true;
   }
-  closeSuccessNewUser() {
-    window.localStorage.setItem('loginMethod', "current");
-    window.localStorage.setItem('loggingIn', "false");
-    this.successDialog.nativeElement.close();
-    //this.account.nativeElement.click();
-    window.localStorage.setItem('newAccount', "true");
-    window.location.pathname = "my-app/account";
-    this.loggedIn = true;
-  }
-  openSubmit(){
-    this.submitErrorDialog.nativeElement.showModal();
-  }
-  closeSubmitDialog(){
-    this.submitErrorDialog.nativeElement.close();
-  }
+
   dismiss(){
     window.localStorage.setItem('errorsOpen', 'false');
   }
-  addFeedback(){
-    var me = this;
-     database.ref("feedback/").push({
-       "name": this.feedbackName, "email": this.feedbackEmail, "message": this.feedbackMessage
-      });
-     this.feedbackSuccess = true;
-     setTimeout(function(){ me.closeSubmitDialog(); me.feedbackSuccess = false;  },2250);
-     this.feedbackName = "";
-     this.feedbackEmail = "";
-     this.feedbackMessage = "";
+
+    addCustomMetricOpen() {
+    this.addDialog.nativeElement.showModal();
   }
+    statusOpen() {
+    this.statusDialog.nativeElement.showModal();
+  }
+   statusClose() {
+    this.statusDialog.nativeElement.close();
+  }
+   addCustomMetricClose() {
+    this.addDialog.nativeElement.close();
+  }
+    saveD() {
+     var d = new Date();
+     var date = d.getTime();
+      database.ref("currentTask/" + this.userID + "/").set({
+      "taskOn": "true",
+      "category": this.category,
+      "task": this.task,
+      "description": this.description,
+      "date": date,
+      "name": this.name,
+      "status": {"status": this.status}
+    });
+    this.addCustomMetricClose();
+    this.category = "";
+    this.task = "";
+    this.description = "";
+  }
+      saveName() {
+        if(this.name.length > 0 && this.name != "Your Name Idiot"){
+     var d = new Date();
+     var date = d.getTime();
+      database.ref("names/" + this.userID + "/").set({
+      "name": this.name,
+    });
+    this.closeSuccess();
+        } else {
+          this.name = "Your Name Idiot"
+        }
+  }
+      saveStatus() {
+     var d = new Date();
+     var date = d.getTime();
+      database.ref("currentTask/" + this.userID + "/status").set({
+       "status": this.status,
+    });
+    this.statusClose();
+  }
+
 }

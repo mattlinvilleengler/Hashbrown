@@ -1,216 +1,170 @@
 <div class=" mdl-layout mdl-js-layout ">
-    <header class="mdl-layout__header " 
-    style="background-color: #333; flex-wrap: wrap; height:auto; min-height:56px;" [hidden]="!loggedIn">
-        <!-- Top row, always visible -->
-        <div class="mdl-layout__header-row" style="flex-wrap: wrap; height:auto; min-height:56px;">
-            <!-- Title -->
-            <span class="mdl-layout-title" style="color:rgba(250,250,250,.75);">VSQUARE</span>
-            <div class="mdl-layout-spacer"></div>
-            <div>
-                <div style="float:left; min-width:200px" class="mainNav">
-                    <span [hidden]="loggedIn" style="color:rgba(0,0,0,.0)">M</span>
-                    <i class="material-icons" style="float:left; margin-right:8px; margin-top:4px;" [hidden]="!loggedIn">account_circle</i>
-                    <span class="mdl-layout-title accentColor" *ngIf="loggedIn" style="margin-right: 20px; margin-top:10px; font-size:14px; opacity:.95;">{{displayName}}</span>
-                </div>
-                <!-- Right aligned menu below button -->
-               
-                <button id="logoutMenu" class="mdl-button mdl-js-button mdl-button--icon" >
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="logoutMenu">
-                    <li class="mdl-menu__item " (click)="signOut()" [hidden]="!loggedIn">Logout</li>
-                    <li class="mdl-menu__item " [hidden]="loggedIn">Login</li>
-                </ul>
-            </div>
-                              <nav class="mdl-navigation mainNav" style= "margin-right:25px;" >
-                <button #account class="mdl-button mdl-js-button mdl-js-ripple-effect navE" [routerLink]="['Account']" style="height:auto">
-                        Account
-                    </button>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect navE" [routerLink]="['Dashboard']" style="height:auto">
-                        Dashboard
-                    </button>
-                <button [routerLink]="['Settings']" class="mdl-button mdl-js-button mdl-js-ripple-effect navE" style="height:auto">
-                        Settings
-                    </button>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect navE" [routerLink]="['AddData']" style="height:auto">
-                        Add Data
-                    </button>
-            </nav>
-        </div>
-        <!-- Bottom row, not visible on scroll -->
-        <!--<div class="mdl-layout__header-row navRow" [hidden]="!loggedIn">
-            <div class="mdl-layout-spacer"></div>
-            
-            <nav class="mdl-navigation" style="max-width:100%;" >
-                <button #account class="mdl-button mdl-js-button mdl-js-ripple-effect navE" [routerLink]="['Account']" style="height:auto">
-                        Account
-                    </button>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect navE" [routerLink]="['Dashboard']" style="height:auto">
-                        Dashboard
-                    </button>
-                <button [routerLink]="['Settings']" class="mdl-button mdl-js-button mdl-js-ripple-effect navE" style="height:auto">
-                        Settings
-                    </button>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect navE" [routerLink]="['AddData']" style="height:auto">
-                        Add Data
-                    </button>
-            </nav>
-        </div> -->
-    </header>
-    <div class="mdl-layout__drawer" [hidden]="!loggedIn">
-        <span class="mdl-layout-title">VSQUARE</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" [routerLink]="['Account']" onclick="
-$('.mdl-layout__obfuscator').click();">Account</a>
-            <a #dashboard class="mdl-navigation__link " [routerLink]="['Dashboard']" onclick="
-$('.mdl-layout__obfuscator').click();">Dashboard</a>
-            <a class="mdl-navigation__link " [routerLink]="['Settings']" onclick="
-$('.mdl-layout__obfuscator').click();">Settings</a>
-            <a class="mdl-navigation__link " [routerLink]="['AddData']" onclick="
-$('.mdl-layout__obfuscator').click();">Add Data</a>
-            <a [hidden]="!loggedIn" class="mdl-navigation__link" (click)="signOut();" style="cursor:pointer;">Logout</a>
-            <a #hiddenLink class="mdl-navigation__link " onclick="
-$('.mdl-layout__obfuscator').click();" style="display: none;"></a>
-        </nav>
-    </div>
+
+    
     <!----------------------------------------------------------------------------main------------------------------------->
     <main class="mdl-layout__content loggedIn" >
         <div id="mainContent" class="page-content" style="">
 
             <div [hidden]="!loggedIn" style=min-height:1000px;>
-                <router-outlet></router-outlet>
+                <center style="display: flex; align-items: center;justify-content: center;" >
+        <div style=" max-width: 100%; margin-top:0%; ">
+            <div class="mdl-card__supporting-text" style=" Padding:0px; width:auto;"> 
+                    <h1 class="landingHead" style="color:rgb(244,67,54); font-weight:600; font-size:85px;">
+                        <i [hidden]="status != 0"class="material-icons">snooze</i>
+                        <i [hidden]="status != 1" class="fa fa-heart" aria-hidden="true"></i>
+                        <i [hidden]="status != 2" class="fa fa-headphones" aria-hidden="true"></i>
+                        <i [hidden]="status != 3" class="fa fa-optin-monster" aria-hidden="true"></i>
+                        HASHBROWN</h1>
+            </div>
+        </div>
+    </center>
+
+<div class="circleCard" style="margin-top:15px;">
+    <div class="circleCard">
+        <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp landingNavSelected" 
+       (click)="addCustomMetricOpen()">
+<i class="material-icons">play_arrow</i><br>START
+</button>
+   <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp landingNavSelected" 
+       (click)="addCustomMetricOpen()">
+<i class="material-icons">pause</i><br>PAUSE
+</button>
+ <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp landingNavSelected" 
+ >
+<i class="material-icons">stop</i><br>STOP
+</button>
+<button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp landingNavSelected" 
+(click)="statusOpen()">
+<i class="fa fa-heart" aria-hidden="true" ></i><br>STATUS
+</button>
+ <button (click)="signOut()"class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp landingNavSelected" 
+ >
+<i class="fa fa-sign-out" aria-hidden="true"></i><br>LOGOUT
+</button>
+    </div></div>
+
+<div class="circleCard" style="margin-top:45px;">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp" *ngFor="let personStatus of groupStat" [hidden]="!personStatus.taskOn" style="margin:25px;">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{personStatus.nameShow}}</h2>
+  </div>
+  <div class="mdl-card__supporting-text" style="padding-top:0px;">
+    <span style="font-size:18px; font-weight:600;">{{personStatus.categoryShow}}</span>
+     <span style="font-size:15px; font-weight:600; margin-left:5px;">{{personStatus.taskShow}}</span><br>
+    <span style="font-size:14px; font-weight:500; margin-top:10px;">{{personStatus.descriptionShow}}</span><br>
+    <span style="font-size:14px; font-weight:500; margin-top:10px;">Started On {{personStatus.dateShow}}</span><br>
+    <span style="font-size:14px; font-weight:500; margin-top:10px;">Time Spent {{personStatus.timeSince}}</span><br>
+    
+  </div>
+  <div class="mdl-card__actions mdl-card--border" >
+    <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">thumb_up</i>
+    </a>
+       <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">insert_comment</i>
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button id="personStatus.nameShow" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+    <i   [hidden]="personStatus.status != 0" class="material-icons">snooze</i>
+                        <i  [hidden]="personStatus.status != 1" class="fa fa-heart" aria-hidden="true"></i>
+                        <i  [hidden]="personStatus.status != 2" class="fa fa-headphones" aria-hidden="true"></i>
+                        <i  [hidden]="personStatus.status != 3" class="fa fa-optin-monster" aria-hidden="true"></i>
+                        
+    </button>
+    <div [hidden]="personStatus.status != 0" class="mdl-tooltip mdl-tooltip--right" for="tt0">Can't Even</div>
+    <div  [hidden]="personStatus.status != 1" class="mdl-tooltip mdl-tooltip--right" for="tt0">Open to chit chat, small talk, and long walks on the creek path</div>
+    <div  [hidden]="personStatus.status != 2" class=" mdl-tooltip mdl-tooltip--right" for="tt0">Available for work related questions</div>
+    <div [hidden]="personStatus.status != 3" class="mdl-tooltip mdl-tooltip--right" for="tt0">I'm workin, I'm foucsed, don't f wit me</div>
+  </div>
+</div>
+</div>
+
+               
             </div>
 
             <my-landing [hidden]="loggedIn"></my-landing>
             <button #refresh style="display: none;"></button>
             </div>
              </main>
-  
-    <footer class="mdl-mega-footer navFooter" style="position:absolute; width:100%;" >
-        <div class="mdl-mega-footer__middle-section">
-
-            <div class="mdl-mega-footer__drop-down-section">
-                <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                <h1 class="mdl-mega-footer__heading">Features</h1>
-                <ul class="mdl-mega-footer__link-list">
-                    <li><a >About</a></li>
-                    <li><a >Terms</a></li>
-                    <li><a >Partners</a></li>
-                    <li><a >Updates</a></li>
-                </ul>
-            </div>
-
-            <div class="mdl-mega-footer__drop-down-section">
-                <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                <h1 class="mdl-mega-footer__heading">Details</h1>
-                <ul class="mdl-mega-footer__link-list">
-                    <li><a >Specs</a></li>
-                    <li><a >Tools</a></li>
-                    <li><a >Resources</a></li>
-                </ul>
-            </div>
-
-            <div class="mdl-mega-footer__drop-down-section">
-                <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                <h1 class="mdl-mega-footer__heading">Technology</h1>
-                <ul class="mdl-mega-footer__link-list">
-                    <li><a >How it works</a></li>
-                    <li><a >Patterns</a></li>
-                    <li><a >Usage</a></li>
-                    <li><a >Products</a></li>
-                    <li><a >Contracts</a></li>
-                </ul>
-            </div>
-
-            <div class="mdl-mega-footer__drop-down-section">
-                <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-                <h1 class="mdl-mega-footer__heading">FAQ</h1>
-                <ul class="mdl-mega-footer__link-list">
-                    <li><a >Questions</a></li>
-                    <li><a >Answers</a></li>
-                    <li><a >Contact us</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="mdl-mega-footer__bottom-section">
-            <div class="mdl-logo">VSQUARE</div>
-            <ul class="mdl-mega-footer__link-list">
-                <li><a >Help</a></li>
-                <li><a >Privacy & Terms</a></li>
-            </ul>
-        </div>
-
-    </footer>
     
 </div>
 
-<dialog #successDialog class="mdl-dialog">
-                <h4 class="mdl-dialog__title">Success</h4>
+<dialog #addDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Start Task</h4>
+    <div class="mdl-dialog__content">
+        <div style='
+    display: block;
+    font-size: 16px;
+    font-family: "Helvetica","Arial",sans-serif; 
+    margin-top:10px;
+    color:rgba(0,0,0,.3);'>
+            <span >{{category}}</span>
+          <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+        
+  <i class="material-icons">arrow_drop_down</i>
+</button>
+<ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect"
+    data-mdl-for="demo-menu-lower-left">
+  <li class="mdl-menu__item" (click)="category='Ticket'">Ticket</li>
+  <li class="mdl-menu__item" (click)="category='Critical'">Critical</li>
+  <li class="mdl-menu__item" (click)="category='PDI'">PDI</li>
+  <li class="mdl-menu__item" (click)="category='Project'">Project</li>
+  <li class="mdl-menu__item" (click)="category='Crisis'">Crisis Mngmt</li>
+  <li class="mdl-menu__item" (click)="category='Meeting'">Meeting</li>
+  <li class="mdl-menu__item" (click)="category='Break'">Break</li>  
+  <li class="mdl-menu__item" (click)="category='Other'">Other</li>
+</ul>
+        </div>
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="task">
+            <label class="mdl-textfield__label" for="sample3">Task...</label>
+        </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample3" [(ngModel)]="description">
+            <label class="mdl-textfield__label" for="sample3">Description...</label>
+        </div>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="addCustomMetricClose()">Close</button>
+        <button type="button" class="mdl-button" (click)="saveD()">Add</button>
+    </div>
+</dialog>
+
+<dialog #welcomeDialog class="mdl-dialog">
+                <h4 class="mdl-dialog__title">Welcome</h4>
                 <div class="mdl-dialog__content">
                     <p>
-                        {{successMessage}}
+                        Welcome to Hashbrown.<br>What's your name?'
                     </p>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample4" [(ngModel)]="name">
+            <label class="mdl-textfield__label" for="sample4">Full Name...</label>
+        </div>
                 </div>
                 <div class="mdl-dialog__actions">
-                    <button type="button" class="mdl-button" (click)="newUser ? closeSuccessNewUser(): closeSuccess();">Continue</button>
+                    <button type="button" class="mdl-button" (click)="saveName();">Continue</button>
                 </div>
             </dialog>
 
-            <div class="mdl-shadow--4dp" style="position:fixed; left:0; 
-            z-index: 5000; top:100px; max-width:200px; background-color:white; 
-            padding: 15px; trasnsition-duration:.4s" [hidden]="!loggedIn" 
-            [class.errorOpen]="!errorsOpen" [class.errorClosed]="errorsOpen" >
-            <div [hidden]="!errorsOpen">
-                <span>VSQUARE is in development. 
-                    Submit suggestions, questions, and errors here.</span>
-                    <div style="clear:both; margin-top:5px">
-           <div class="buttonsHover" (click)="openSubmit();" >
-            <span style="float:left; margin-top:4px; margin-right:2px; color:black;">Add</span>
-            <i class="material-icons" style="float:left; color:black;">add_circle</i>
-           </div>
 
-           <div class="buttonsHover" (click)="errorsOpen = false; dismiss();" >
-             <span style="float:left; margin-top:4px; margin-right:2px; color:black;">Dismiss</span>
-            <i class="material-icons" style="float:left; color:black;">close</i>
-           </div>
-                    </div>
-            </div>
-            <div [hidden]="errorsOpen" style="margin-top:-2px;">
-            <i class="material-icons" (click)="errorsOpen = true;" style="cursor:pointer; 
-            margin-left:-7px; margin-top:-15px;">new_releases</i>
-            </div>
-           </div>
+            <dialog #statusDialog class="mdl-dialog">
+                <h4 class="mdl-dialog__title">Status</h4>
+                <div class="mdl-dialog__content">
+                    <h6>What's your status?</h6>
 
-               <dialog #submitErrorDialog class="mdl-dialog">
-        <h4 class="mdl-dialog__title">Feedback & Questions</h4>
-        <div [hidden]="feedbackSuccess">
-        <div class="mdl-dialog__content" >
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input [(ngModel)]="feedbackName" class="mdl-textfield__input" type="text" id="sample3" >
-                <label class="mdl-textfield__label" for="sample3">Name...</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input [(ngModel)]="feedbackEmail"  class="mdl-textfield__input" type="email" id="sample3" >
-                <label class="mdl-textfield__label" for="sample3">Email...</label>
-            </div>
-              <div class="mdl-textfield mdl-js-textfield">
-    <textarea [(ngModel)]="feedbackMessage" class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
-    <label class="mdl-textfield__label" for="sample5">Message...</label>
-  </div>
-  <!--<input type="hidden" name="_next" value="{{url}}">-->
-        </div>
-        <div class="mdl-dialog__actions mdl-dialog__actions">
-            <button type="button" class="mdl-button" (click)="closeSubmitDialog()">Close</button>
-            <button type="button" class="mdl-button" (click)="addFeedback();">Submit</button>
-        </div>
-        </div>
-        <div [hidden]="!feedbackSuccess">
-            <div class="mdl-dialog__content">
-                Thank you for your submission!
-            </div>
-        </div>
-    </dialog>
+                        <i id="tt9"  style="margin:10px; font-size:25px; cursor:pointer;" class="material-icons" (click)="status=0;">snooze</i>
+                        <i id="tt10"  style="margin:10px; font-size:25px; cursor:pointer;" class="fa fa-heart" aria-hidden="true" (click)="status=1;"></i>
+                        <i id="tt11"  style="margin:10px; font-size:25px; cursor:pointer;" class="fa fa-headphones" aria-hidden="true" (click)="status=2;"></i>
+                        <i id="tt12" style="margin:10px; font-size:25px; cursor:pointer;" class="fa fa-optin-monster" aria-hidden="true" (click)="status=3;"></i>
 
-           
+                        <div  class="mdl-tooltip mdl-tooltip--right mdl-tooltip--large" for="tt9">Can't Even</div>
+    <div  class="mdl-tooltip mdl-tooltip--right mdl-tooltip--large" for="tt10">Open to chit chat, small talk, and long walks on the creek path</div>
+    <div   class=" mdl-tooltip mdl-tooltip--right mdl-tooltip--large" for="tt11">Available for work related questions</div>
+    <div  class="mdl-tooltip mdl-tooltip--right mdl-tooltip--large" for="tt12">I'm workin, I'm foucsed, don't f wit me</div>
+        
+                </div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button" (click)="saveStatus();">Continue</button>
+                </div>
+            </dialog>
