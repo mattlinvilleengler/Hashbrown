@@ -1,0 +1,128 @@
+<div class="dashBox" style="margin:60px 20px 0 0; margin-left:0!important;">
+    <div class="">
+        <button class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp" 
+        [class.landingNavSelected]="one" [class.landingNav]="!one" style="line-height:15px!important; 
+        text-align:left; width: 65px!important; height: 95px!important; padding:0 1px 0 4px!important;background-color: rgba(0,0,0,.9)!important;
+        color: rgba(250,250,250,.3)!important;"
+        (click)="one = !one; createFakeData();">
+<i class="material-icons" style="margin-bottom:2px;">add</i>Create Fake Data
+</button>
+    </div></div>
+
+
+<div class="circleCard " style=margin-bottom:50px;>
+<div  class="demo-card-wide mdl-card mdl-shadow--2dp ma"  style="float:left; margin:1%; margin-top:5%; max-width:90%; width: 725px; overflow:visible;">
+    <div class="mdl-card__title">
+       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-shadow--6dp" 
+       style="margin-top:-40px; width:100%; height:75px; text-align:left; background-color: #333; color:rgba(250,250,250, .5)">
+            <h4 style="margin:0">Add Data</h4>
+       </button>
+    </div>
+    <div class="mdl-card__supporting-text" style="padding: 0px 0px 16px 16px; margin-top: -7px;">
+        <div class="demo-list-action mdl-list" *ngFor="let settingGroup of settingsOrganized" 
+        style="display:inline-block; vertical-align: top; margin : 0 10px; width:305px;">
+            <h5>{{settingGroup[0] ? settingGroup[0].category : "Custom Metrics"}}</h5>
+            <hr>
+            <div *ngFor="let settings of settingGroup">
+                <div class="mdl-list__item" [hidden]="!settings.selected">
+                    <i class="material-icons accent">{{settings.icon}}</i>
+                    <span class="mdl-list__item-primary-content">
+<span>{{settings.measurement}}</span>
+                    </span>
+                    <input *ngIf="settings.valueType == 'range'" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" 
+                    value={{settings.value}} tabindex="0" id={{settings.measurement}} 
+                    (change)="settings.value = document.getElementById(settings.measurement).value">
+
+                    <div *ngIf="settings.valueType == 'number'" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" [class.negativeMT]="settings.valueType == 'number'"
+                        style="width:auto;">
+                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="settings.measurement" [(ngModel)]="settings.value">
+                        <label class="mdl-textfield__label" for="settings.measurement">Number...</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border" (click)="console.log(finVal)">
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent extend" (click)="saveData()" style="float:right">
+Save
+</a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">multiline_chart</i>
+                    </button>
+    </div>
+</div>
+</div>
+<!--
+<button id="saveSettings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent extend"
+ (click)="createFakeData()" style="background-color: rgba(0,0,0,.9); position: fixed; right: 100px; top:177px; z-index:999;">
+  Create Fake Data
+</button>-->
+
+<dialog #fakeDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Create Data</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Creating fake data will clear out any of your current and historical data.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="createFakeDataProceed()">Proceed</button>
+        <button type="button" class="mdl-button" (click)="closeFakeDialog()">Close</button>
+    </div>
+</dialog>
+
+<dialog #fakeDialogSuccess class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Success</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Fake data has successfully been created.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="dashboardFake()">Go To Dashboard</button>
+        <button type="button" class="mdl-button" (click)="closeFakeSuccessDialog()">Close</button>
+    </div>
+</dialog>
+
+
+<dialog #errorDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Error</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            You have already saved data for today. You may edit this data by selecting it on your dashboard
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="dashboard()">Go To Dashboard</button>
+        <button type="button" class="mdl-button" (click)="closeDialog()">Close</button>
+    </div>
+</dialog>
+
+<dialog #successDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Success</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            Your data for today has been succesfully saved. Keep up the good work.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="dashboardSuccess()">Go To Dashboard</button>
+        <button type="button" class="mdl-button" (click)="closeSuccessDialog()">Close</button>
+    </div>
+</dialog>
+
+<dialog #newDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Add Data</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            This is where you can save and update your daily metrics. Now let's see where you can view your data anlytics.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="closeNewDialog()">Continue</button>
+    </div>
+</dialog>

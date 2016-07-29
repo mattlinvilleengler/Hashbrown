@@ -1,0 +1,1 @@
+{"version":3,"file":"datacard.component.js","sourceRoot":"","sources":["datacard.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAAiD,eAAe,CAAC,CAAA;AAOjE;IAAA;IAIA,CAAC;IAHC,2CAAe,GAAf;QACE,gBAAgB,CAAC,UAAU,EAAE,CAAC;IAChC,CAAC;IAPH;QAAC,gBAAS,CAAC;YACT,QAAQ,EAAE,aAAa;YACvB,WAAW,EAAE,sCAAsC;SACpD,CAAC;;yBAAA;IAKF,wBAAC;AAAD,CAAC,AAJD,IAIC;AAJY,yBAAiB,oBAI7B,CAAA"}

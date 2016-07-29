@@ -1,4 +1,4 @@
-export class HashbrownPage {
+export class MyAppPage {
   navigateTo() {
     return browser.get('/');
   }

@@ -1,0 +1,34 @@
+<div class="dem-card-wide mdl-card mdl-shadow--2dp" style="height:225px; min-width:175px;width:auto; float:left; margin:25px; padding:0px">
+    <div class="mdl-card__title" style="padding:0px; position:relative; height:80%;">
+        <div class='circleGraph' [hidden]="!range">
+            <div id="cont" >
+                <svg id="svg" width="170" height="170" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="60" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+                    <circle id="bar" r="60" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0" [style.stroke-dashoffset.px]="exercisePct"></circle>
+                </svg>
+            </div>
+        </div>
+            <div [hidden]="range" [style.height.%]="height" class="mdl-shadow--2dp"
+            style = "background-color: black; width:25px; position:absolute; bottom:0px;left:15%; transition-duration:.3s;">
+            </div>
+            <div  
+            style = "position:absolute; bottom:30%;left:45%; color: rgba(0,0,0,.25); font-weight:600;">
+            High: {{high}}<span *ngIf="range">%</span><br>
+            Avg:<span style="color: rgba(0,18,58,.75)"> {{avg}}<span *ngIf="range">%</span>
+            <span *ngIf="!range">{{x}}</span>
+            </span><br>
+            Low: {{low}}<span *ngIf="range">%</span>
+            </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="toggleGraph(1)">
+           {{measurement}}
+        </button>
+    </div>
+    <div class="mdl-card__menu" style="top:10px; right:10px;">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons" [hidden]="!range">data_usage</i>
+                        <i class="material-icons" [hidden]="range">insert_chart</i>
+                    </button>
+    </div>
+</div>

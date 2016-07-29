@@ -1,10 +1,10 @@
-import { HashbrownPage } from './app.po';
+import { MyAppPage } from './app.po';
 
-describe('hashbrown App', function() {
-  let page: HashbrownPage;
+describe('my-app App', function() {
+  let page: MyAppPage;
 
   beforeEach(() => {
-    page = new HashbrownPage();
+    page = new MyAppPage();
   });
 
   it('should display message saying app works', () => {

@@ -1,0 +1,84 @@
+<!-- Simple header with fixed tabs. -->
+<div class="mdl-layout mdl-js-layout  navButton">
+  <header class="mdl-layout__header" style="min-height:49px; display:none!important;">
+    <!-- Tabs -->
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect" 
+    style="background-color: rgba(0,0,0,.9); flex-wrap: wrap; height: auto; overflow:visible;">
+      <a #oneRef href="#fixed-tab-1" class="mdl-layout__tab is-active" style="color: rgba(250,250,250,.65)">Aggregate Data Graph</a>
+      <a #twoRef href="#fixed-tab-2" class="mdl-layout__tab" style="color: rgba(250,250,250,.65)">Data Averages</a>
+      <a #threeRef href="#fixed-tab-3" class="mdl-layout__tab" style="color: rgba(250,250,250,.65)">Historical Data</a>
+    </div>
+  </header>
+<main class="mdl-layout__content" style="padding: 0px 0 85px 0;">
+
+<div class="dashBox" style="margin:10px 20px 15px 0; margin-left: 0!important;">
+    <div class="">
+        <a class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp" 
+        [class.landingNavSelected]="one" [class.landingNav]="!one"
+        (click)="one = true; oneRef.click();two = false; three = false;">
+<i class="material-icons"> multiline_chart</i>Graph
+</a>
+ <a class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp " 
+ [class.landingNavSelected]="two" [class.landingNav]="!two" 
+ (click)="average(); one = false; three = false;">
+<i class="material-icons"> data_usage</i>Averages
+</a>
+ <a class="extend7 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--4dp " 
+ [class.landingNavSelected]="three" [class.landingNav]="!three" 
+ (click)="three = true; threeRef.click(); one = false; two = false;">
+<i class="material-icons"> history</i>History
+</a>
+    </div></div>
+<div class="dashBox">
+    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+      <div class="page-content circleCard">
+<my-datavisualization></my-datavisualization>
+</div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+      <div class="page-content circleCard">
+          
+          <my-singlevisualization *ngFor="let measure of measurementsAvg" [measurement]="measure.name" 
+          [percentV]=measure.valueV [percent]=measure.value [avg]=measure.avg [high]=measure.high [low]=measure.low
+          [isRange]=measure.isRange [height]=measure.height [x]='measure.x || ""'></my-singlevisualization>
+         
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+      <div class="page-content ">
+          <my-datadays class="circleCard"></my-datadays>
+          </div>
+    </section>
+</div>
+  </main>
+</div>
+
+
+<dialog #newDialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Dashboard</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            This is where you can view the following data analytics: a graph of aggragate data over time, data averages, data history,
+            and data trends / correlations.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="closeNewDialog()">Close</button>
+    </div>
+</dialog>
+
+
+<dialog #noData class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Dashboard</h4>
+    <div class="mdl-dialog__content">
+        <p>
+            You do not currently have enough data history to display analytics.
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="closeDialog()">Close</button>
+    </div>
+</dialog>
+
+
+

@@ -1,0 +1,70 @@
+<div class="demo-card-wide mdl-card mdl-shadow--2dp" [style.width.px]="mainWidth" style="max-width: 90%;  height:auto; float:left; margin:25px;">
+    <div class="mdl-card__title dataTitle" >
+        <div id="graphButtons">
+        <div style="float:left;">
+            <i class="material-icons arrowButtons" (click)="changeSet('week', 2)">arrow_back</i>
+            <button id="weekButton" class="mdl-button mdl-js-button mdl-js-ripple-effect selectedTime" (click)="setTime('week')">
+                        Per Week
+                    </button><i class="material-icons arrowButtonsX" (click)="changeSet('week', 1)">arrow_forward</i>
+        </div>
+        <div style="float:left;">
+            <i class="material-icons arrowButtons" (click)="changeSet('month', 2)">arrow_back</i>
+            <button id="monthButton" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="setTime('month')">
+                        Per Month
+                    </button><i class="material-icons arrowButtonsX" (click)="changeSet('month', 1)">arrow_forward</i>
+        </div>
+        <div style="float:left;">
+            <i class="material-icons arrowButtons" (click)="changeSet('year', 2)">arrow_back</i>
+            <button id="yearButton" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="setTime('year')">
+                        Per Year
+                    </button><i class="material-icons arrowButtonsX" (click)="changeSet('year', 1)">arrow_forward</i>
+        </div>
+        </div>
+    </div>
+    <div class="mdl-card__supporting-text" style="padding:5px; margin-top: -15px;">
+        <div id="graphBox" style=""></div>
+        <div id="graphBox2" [style.margin-top.px]="mtGraph"></div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect selectedTime" *ngFor="let g of gColor" (click)="toggleGraph(g.mes)"
+            style="margin:5px; float:right; background-color:whitesmoke;">
+                        {{g.mes}} <i class="material-icons" [style.color]="g.col" style="margin-left:6px;" >timeline</i>
+                    </button>
+    </div>
+    <div class="mdl-card__menu">
+
+              <!-- Right aligned menu below button -->
+                <button id="graph-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon" >
+                        <i class="material-icons" >more_vert</i>
+                    </button>
+
+                <ul style="left:5px;" class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="graph-menu-lower-right">
+                    <center>
+                    <div style="margin:15px 0;" >
+            <i class="material-icons arrowButtons" style="font-size: 19px" (click)="changeSet('week', 2)">arrow_back</i>
+            <button id="weekButton" style="padding: 8px 0px; font-size: 11px; line-height: 16px; margin-top: -10px"
+             class="mdl-button mdl-js-button mdl-js-ripple-effect selectedTime" (click)="setTime('week')">
+                        Per Week
+                    </button><i style="font-size: 19px"  class="material-icons arrowButtonsX" (click)="changeSet('week', 1)">arrow_forward</i>
+        </div>
+
+           <div style="margin:15px 0;">
+            <i class="material-icons arrowButtons" style="font-size: 19px" (click)="changeSet('month', 2)">arrow_back</i>
+            <button id="monthButton" style="padding: 8px 0px; font-size: 11px; line-height: 16px; margin-top: -10px" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="setTime('month')">
+                        Per Month
+                    </button><i class="material-icons arrowButtonsX" style="font-size: 19px" (click)="changeSet('month', 1)">arrow_forward</i>
+        </div>
+
+              <div style="margin:15px 0;">
+            <i class="material-icons arrowButtons" style="font-size: 19px" (click)="changeSet('year', 2)">arrow_back</i>
+            <button id="yearButton" style="padding: 8px 0px; font-size: 11px; line-height: 16px; margin-top: -10px" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="setTime('year')">
+                        Per Year
+                    </button><i class="material-icons arrowButtonsX" style="font-size: 19px" (click)="changeSet('year', 1)">arrow_forward</i>
+        </div>
+                    </center>
+
+
+                    
+                </ul>
+    </div>
+</div>

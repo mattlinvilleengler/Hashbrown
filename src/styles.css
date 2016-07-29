@@ -1,0 +1,416 @@
+
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+}
+
+.mdl-layout__header--waterfall {
+    /overflow: visible !important;
+}
+.accent {
+    color: rgb(100,255,218);
+    margin-right: 15px;
+}
+.accentColor {
+    color: rgb(100,255,218);
+}
+.accent2 {
+    color: rgb(100,255,218);
+    margin-right: -5px;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: rgba(0,0,0, .8);
+    stroke-width: .75px;
+    shape-rendering: crispEdges;
+}
+.tick line {
+    stroke: rgba(0,0,0, .1);
+}
+.axis text{
+         fill: rgba(0,0,0,.65);
+    font-weight: 200;
+}
+.x.axis path {
+    display: none;
+}
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+.legend {
+    font-size: 14px;
+    font-weight: bold;
+}
+.arrowButtons {
+    cursor: pointer !important;
+}
+.arrowButtonsX {
+    margin-right: 15px;
+    cursor: pointer !important;
+}
+.selectedTime{
+    background-color:rgba(0,0,0, .08);
+}
+.mdl-menu__container{
+    right: 50px!important;
+}
+
+/* ---------------------------------- circleGraph --------------------- */
+
+.circleGraph #svg circle {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .3s linear;
+  stroke: transparent;
+  stroke-width: 1em;
+}
+
+.circleGraph #svg #bar {
+  stroke: rgb(100,255,218);
+}
+
+.circleGraph #cont {
+  display: block;
+  height: 160px;
+  width: 180px;
+  margin: 15px 2px 20px -15px;
+  /box-shadow: 0 0 1em black;
+  border-radius: 100%;
+  position: relative;
+}
+
+
+
+.circleGraph input {
+  color: #000;
+}
+
+
+/* Make things perty */
+
+
+.circleGraph input {
+  border: 1px solid #666;
+  background: #333;
+  color: #fff;
+  padding: 0.5em;
+  box-shadow: none;
+  outline: none !important;
+  margin: 1em auto;
+  text-align: center;
+}
+
+.mdl-mega-footer__drop-down-section{
+  width:80%;
+}
+.measurementSelection:hover{
+  background-color: rgba(0,0,0, .1);
+  cursor:pointer;
+}
+.measurementSelected{
+  transition-duration: .4s;
+}
+.measurementSelectedBox{
+  background-color: rgba(0,0,0, .2)
+}
+.measurementSelection{
+  transition-duration: .4s;
+}
+.measurementSelected a i{
+  color: rgb(100,255,218) !important;
+}
+.measurementSelection a i{
+  color: rgba(0,0,0, .75) ;
+  transition-duration: .3s;
+}
+.smFont{
+   / font-size:15px;
+}
+.meas{
+    min-height:27px !important;
+    padding:0 55px 0 16px !important;
+}
+.rotate{
+   -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+#graph-menu-lower-right{
+    display:none;
+}
+@media (max-width: 800px){
+.landingI{
+right:75px !important;
+}
+.dataTitle{
+    display:block !important;
+}
+.mdl-layout__tab{
+    margin:0 25px !important;
+}
+.mdl-layout__tab-bar-container {
+    height: auto !important;
+}
+#graph-menu-lower-right{
+    display:block !important;
+}
+#graphButtons{
+    display: none;
+}
+.dashBox{
+    float:none !important;
+     max-width:100%!important;
+     margin-left:0%!important;
+}
+.buttonInline{
+    display:inline!important;
+}
+
+}
+@media (max-width: 975px){
+#addMetric{
+    top:140px !important;
+    right:40px !important;
+}
+#saveSettings{
+    top:142px !important;
+    right:100px !important;
+}
+   .ma{
+margin-top:75px !important;
+}
+
+}
+
+@media (max-width: 425px){
+.landingI{
+right:50px !important;
+}
+.landingHead{
+    font-size: 45px !important;
+}
+.navButton{
+    margin-top:50px;
+}
+#addMetric{
+    top:25px !important;
+    right:15px !important;
+}
+#saveSettings{
+    top:27px !important;
+    right:65px !important;
+}
+
+}
+.dataTitle button{
+    margin-top:-12px;
+}
+.dataTitle{
+    padding-bottom:0 !important;
+}
+
+@media (max-width: 560px){
+   .accountCard{
+    width:100% !important;
+    margin-left: 0px !important;
+    float:left !important;
+   }
+   .freeAxis{
+       right:0px!important;
+   }
+
+    .mainNav{
+    display: none!important;
+}
+.mdl-layout-title{
+    margin-top:-19px !important;
+}
+.mainCard{
+    margin:5% 2% 0 2% !important;
+}
+}
+@media screen and (min-width: 0px){
+.mdl-layout__header {
+    display: block !important;
+}
+.navRow{
+    padding-left:10px !important;
+}
+.mdl-layout__drawer-button{
+    color:rgba(250,250,250,.75) !important;
+}
+
+}
+._dialog_overlay{
+    z-index: -1 !important;
+}
+.circleCard{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.negativeMT{
+    margin:-20px 20px -20px 0 !important;
+    max-width:125px !important;
+}
+.extend:hover{
+ box-shadow: 0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.2);
+}
+.extend7:hover{
+     box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2);
+}
+#mainBox{
+    background : url(app/background.JPG) no-repeat center center #666;
+    background-size: cover;
+}
+.navTransparent{
+    background-color: rgba(0,0,0,.0) !important;
+}
+.navFooter{
+    background-color: #333 !important;
+}
+.mainCard{
+    position:relative;
+    margin:5% 8% 0 8%; 
+    border-radius: 10px 10px 0 0!important;
+    width:auto!important; 
+    min-height: 100%!important;
+    overflow:hidden;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.2);
+}
+.loggedInCard{
+    margin:1% 1% 0 1%; 
+}
+.mainBodyColor{
+    background-color: rgba(0,0,0, 0.05);
+}
+.c{
+transition-duration: .4s;
+}
+.c:hover{
+    box-shadow:0 10px 12px 2px rgba(0,0,0,.14),0 4px 15px 3px rgba(0,0,0,.12),0 6px 6px -3px rgba(0,0,0,.2) !important;
+}
+.card1{
+    color: #fff; 
+    background: url(app/graph.png) bottom right 15% no-repeat;
+    background-size: cover;
+}
+.card2{
+    color: #fff; 
+    background: url(app/data.png) bottom right 15% no-repeat;
+    background-size: cover;
+}
+.card3{
+    color: #fff; 
+    background: url(app/average.png) bottom right 15% no-repeat;
+    background-size: cover;
+}
+.card4{
+    color: #fff; 
+    background: url(app/history.png) bottom right 15% no-repeat;
+    background-size: cover;
+}
+.card5{
+    color: #fff; 
+    background: url(app/averages.png) bottom right 15% no-repeat;
+    background-size: cover;
+}
+.card6{
+    color: #fff; 
+    background: url(app/4.jpg) bottom right 15% no-repeat;
+    background-size: cover;
+}
+.picText{
+    font-weight:600!important;
+    color:rgba(0,0,0,.9)!important;
+    display:none!important;
+}
+.landingNavSelected{
+    height: 110px!important;
+    width:90px!important;
+    background-color:rgba(0,0,0,.75)!important;
+    color:rgba(250,250,250,.75)!important;
+    margin:20px 1px!important;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2)!important;
+    padding-top:25px!important;
+    line-height:40px!important;
+    font-weight:600!important;
+}
+.landingNavSelected:hover{
+  color:rgba(250,250,250,.95)!important;
+}
+.landingNavSelected i{
+    display:block;
+}
+.landingNav{
+    height: 110px!important;
+    width:90px!important;
+    background-color:transparent!important;
+    color:rgba(0,0,0,.65)!important;
+    margin:20px 1px!important;
+    padding-top:25px!important;
+    line-height:40px!important;
+    font-weight:600!important;
+    box-shadow: none!important;
+    transition-duration: .3s!important;
+}
+.landingNav i{
+    display:block;
+}
+.landingNav:hover{
+    background-color:white!important;
+}
+.dashBox{
+    float:left;
+    max-width:75%;
+    margin-left:2%!important;
+}
+@media screen and (max-width: 850px){
+.mdl-layout__header-row {
+ padding-top:16px!important;
+}
+}
+.buttonsHover{
+    padding:5px 10px;
+    display:inline-block;
+    border-radius:4px;
+    transition-duration:.2s;
+}
+.buttonsHover:hover{
+    background-color: rgba(0,0,0, .1);
+    cursor: pointer;
+}
+.errorClosed{
+width:200px;
+height:102px;
+transition-duration:.1s;
+}
+.errorOpen{
+width:7px;
+height:1px;
+transition-duration:.1s;
+}
+.mdl-layout__drawer{
+    z-index: 6500 !important;
+}
+  .freeAxis{
+       right:0px!important;
+   }
+   .mainFlip{
+    position: absolute!important;
+    right: 25px!important;
+    top: -67px!important;
+    z-index:2000;
+    transition-duration:.7s;
+      -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+    width:320px!important;
+   }
+   .mainFlip h1{
+       font-size:25px!important;
+   }
+  .mainFlip i{
+font-size:25px!important;
+   }
